@@ -232,7 +232,7 @@ bool curl_setopt ( resource $ch , int $option , mixed $value )
             <td>
             <strong><code>TRUE</code></strong>  时将完全静默，无论是何 cURL 函数。
             </td>
-            <td>在 cURL 7.15.5  中移出（可以使用 CURLOPT_RETURNTRANSFER 作为代替）</td>
+            <td>在 cURL 7.15.5  中移出（可以使用 <code>CURLOPT_RETURNTRANSFER</code> 作为代替）</td>
         </tr>
 
         <tr>
@@ -397,7 +397,12 @@ bool curl_setopt ( resource $ch , int $option , mixed $value )
         <tr>
             <td><strong><code>CURLOPT_FTPSSLAUTH</code></strong></td>
             <td>
-            FTP验证方式（启用的时候）：<em>CURLFTPAUTH_SSL</em> (首先尝试SSL)，<em>CURLFTPAUTH_TLS</em> (首先尝试TLS)或<em>CURLFTPAUTH_DEFAULT</em> (让cURL 自个儿决定)。
+                FTP验证方式（启用的时候）：<br>
+                <blockquote>
+                <code>CURLFTPAUTH_SSL</code>：首先尝试SSL<br>
+                <code>CURLFTPAUTH_TLS</code>：首先尝试TLS<br>
+                <code>CURLFTPAUTH_DEFAULT</code>：cURL自己决定
+                </blockquote>
             </td>
             <td>在 cURL 7.12.2 中被加入。</td>
         </tr>
@@ -405,9 +410,9 @@ bool curl_setopt ( resource $ch , int $option , mixed $value )
         <tr>
             <td><strong><code>CURLOPT_HTTP_VERSION</code></strong></td>
             <td>
-            <code>CURL_HTTP_VERSION_NONE</code> (默认值，让 cURL 自己判断使用哪个版本)，<br>
-            <code>CURL_HTTP_VERSION_1_0</code> (强制使用 HTTP/1.0)<br>
-            <code>CURL_HTTP_VERSION_1_1</code> (强制使用 HTTP/1.1)。
+                <code>CURL_HTTP_VERSION_NONE</code>：默认值，cURL 自己判断使用哪个版本<br>
+                <code>CURL_HTTP_VERSION_1_0</code>：强制使用 HTTP/1.0<br>
+                <code>CURL_HTTP_VERSION_1_1</code>：强制使用 HTTP/1.1
             </td>
             <td></td>
         </tr>
@@ -415,24 +420,24 @@ bool curl_setopt ( resource $ch , int $option , mixed $value )
         <tr>
             <td><strong><code>CURLOPT_HTTPAUTH</code></strong></td>
             <td>
-            <p>
-            使用的 HTTP 验证方法。选项有：<br>
-            <code>CURLAUTH_BASIC</code>、<br>
-            <code>CURLAUTH_DIGEST</code>、<br>
-            <code>CURLAUTH_GSSNEGOTIATE</code>、<br>
-            <code>CURLAUTH_NTLM</code>、<br>
-            <code>CURLAUTH_ANY</code>、<br>
-            <code>CURLAUTH_ANYSAFE</code>。
-            </p>
-            <p>
-            可以使用 <em>|</em> 位域(OR)操作符结合多个值，cURL 会让服务器选择受支持的方法，并选择最好的那个。
-            </p>
-            <p>
-            <code>CURLAUTH_ANY</code>是 <em>CURLAUTH_BASIC | CURLAUTH_DIGEST | CURLAUTH_GSSNEGOTIATE | CURLAUTH_NTLM</em> 的别名。
-            </p>
-            <p>
-            <code>CURLAUTH_ANYSAFE</code> 是 <em>CURLAUTH_DIGEST | CURLAUTH_GSSNEGOTIATE | CURLAUTH_NTLM</em> 的别名。
-            </p>
+                <p>
+                    使用的 HTTP 验证方法。选项有：<br>
+                    <code>CURLAUTH_BASIC</code><br>
+                    <code>CURLAUTH_DIGEST</code><br>
+                    <code>CURLAUTH_GSSNEGOTIATE</code><br>
+                    <code>CURLAUTH_NTLM</code><br>
+                    <code>CURLAUTH_ANY</code><br>
+                    <code>CURLAUTH_ANYSAFE</code>。
+                </p>
+                <p>
+                    可以使用 <em>|</em> 位域(OR)操作符结合多个值，cURL 会让服务器选择受支持的方法，并选择最好的那个。
+                </p>
+                <p>
+                    <code>CURLAUTH_ANY</code>是 <code>CURLAUTH_BASIC | CURLAUTH_DIGEST | CURLAUTH_GSSNEGOTIATE | CURLAUTH_NTLM</code> 的别名。
+                </p>
+                <p>
+                    <code>CURLAUTH_ANYSAFE</code> 是 <code>CURLAUTH_DIGEST | CURLAUTH_GSSNEGOTIATE | CURLAUTH_NTLM</code> 的别名。
+                </p>
             </td>
             <td></td>
         </tr>
@@ -487,7 +492,13 @@ bool curl_setopt ( resource $ch , int $option , mixed $value )
         <tr>
             <td><strong><code>CURLOPT_POSTREDIR</code></strong></td>
             <td>
-            位掩码， 1 (301 永久重定向), 2 (302 Found)和 4 (303 See Other) 设置 <strong><code>CURLOPT_FOLLOWLOCATION</code></strong> 时，什么情况下需要再次  HTTP POST 到重定向网址。
+            位掩码<br>
+            <blockquote>
+            1 (301 永久重定向)<br>
+            2 (302 Found)<br>
+            4 (303 See Other)<br>
+            </blockquote>
+            设置 <strong><code>CURLOPT_FOLLOWLOCATION</code></strong> 时，什么情况下需要再次  HTTP POST 到重定向网址。
             </td>
             <td>cURL 7.19.1 中添加，PHP 5.3.2 开始可用。</td>
         </tr>
@@ -499,7 +510,22 @@ bool curl_setopt ( resource $ch , int $option , mixed $value )
             <strong><code>CURLPROTO_*</code></strong>的位掩码。启用时，会限制 libcurl 在传输过程中可使用哪些协议。这将允许你在编译libcurl时支持众多协议，但是限制只用允许的子集。默认 libcurl 将使用所有支持的协议。参见<strong><code>CURLOPT_REDIR_PROTOCOLS</code></strong>。
             </p>
             <p>
-            可用的协议选项为：<code>CURLPROTO_HTTP</code>、<code>CURLPROTO_HTTPS</code>、<code>CURLPROTO_FTP</code>、<code>CURLPROTO_FTPS</code>、<code>CURLPROTO_SCP</code>、<code>CURLPROTO_SFTP</code>、<code>CURLPROTO_TELNET</code>、<code>CURLPROTO_LDAP</code>、<code>CURLPROTO_LDAPS</code>、<code>CURLPROTO_DICT</code>、<code>CURLPROTO_FILE</code>、<code>CURLPROTO_TFTP</code>、<code>CURLPROTO_ALL</code>
+            可用的协议选项为：
+            <blockquote>
+            <code>CURLPROTO_HTTP</code><br>
+            <code>CURLPROTO_HTTPS</code><br>
+            <code>CURLPROTO_FTP</code><br>
+            <code>CURLPROTO_FTPS</code><br>
+            <code>CURLPROTO_SCP</code><br>
+            <code>CURLPROTO_SFTP</code><br>
+            <code>CURLPROTO_TELNET</code><br>
+            <code>CURLPROTO_LDAP</code><br>
+            <code>CURLPROTO_LDAPS</code><br>
+            <code>CURLPROTO_DICT</code><br>
+            <code>CURLPROTO_FILE</code><br>
+            <code>CURLPROTO_TFTP</code><br>
+            <code>CURLPROTO_ALL</code>
+            </blockquote>
             </p>
             </td>
             <td>在 cURL 7.19.4 中被加入。</td>
@@ -563,14 +589,15 @@ bool curl_setopt ( resource $ch , int $option , mixed $value )
         <tr>
             <td><strong><code>CURLOPT_SSLVERSION</code></strong></td>
             <td>
-            <strong><code>CURL_SSLVERSION_DEFAULT</code></strong> (0),
-            <strong><code>CURL_SSLVERSION_TLSv1</code></strong> (1),
-            <strong><code>CURL_SSLVERSION_SSLv2</code></strong> (2),
-            <strong><code>CURL_SSLVERSION_SSLv3</code></strong> (3),
-            <strong><code>CURL_SSLVERSION_TLSv1_0</code></strong> (4),
-            <strong><code>CURL_SSLVERSION_TLSv1_1</code></strong> (5) ，
-            <strong><code>CURL_SSLVERSION_TLSv1_2</code></strong> (6)  中的其中一个。
             <blockquote>
+            <strong><code>CURL_SSLVERSION_DEFAULT</code></strong> (0)<br>
+            <strong><code>CURL_SSLVERSION_TLSv1</code></strong> (1)<br>
+            <strong><code>CURL_SSLVERSION_SSLv2</code></strong> (2)<br>
+            <strong><code>CURL_SSLVERSION_SSLv3</code></strong> (3)<br>
+            <strong><code>CURL_SSLVERSION_TLSv1_0</code></strong> (4)<br>
+            <strong><code>CURL_SSLVERSION_TLSv1_1</code></strong> (5)<br>
+            <strong><code>CURL_SSLVERSION_TLSv1_2</code></strong> (6)<br>
+            <br>
             <p><strong>Note</strong>: </p>
             <p>你最好别设置这个值，让它使用默认值。设置为 2 或 3 比较危险，在 SSLv2 和 SSLv3 中有弱点存在。</p>
             </blockquote>
@@ -614,7 +641,7 @@ bool curl_setopt ( resource $ch , int $option , mixed $value )
         <tr>
             <td><strong><code>CURLOPT_MAX_RECV_SPEED_LARGE</code></strong></td>
             <td>
-                如果下载速度（每秒字节数）超过在传输过程中的累积平均速度，传输将保持平均速率小于或等于参数值。默认为无限的速度。（非标准翻译）
+                下载速度（每秒字节（bytes）数）超过在传输过程中的累积平均速度，传输将保持平均速率小于或等于参数值。默认为无限的速度。
             </td>
             <td>
                 在 7.15.5 中被加入。 从 PHP 5.4.0 起可使用。
@@ -624,7 +651,7 @@ bool curl_setopt ( resource $ch , int $option , mixed $value )
         <tr>
             <td><strong><code>CURLOPT_MAX_SEND_SPEED_LARGE</code></strong></td>
             <td>
-                如果上传速度（每秒字节数）超过在传输过程中的累积平均速度，传输将保持平均速率小于或等于参数值。默认为无限的速度。（非标准翻译）
+                上传速度（每秒字节（bytes）数）超过在传输过程中的累积平均速度，传输将保持平均速率小于或等于参数值。默认为无限的速度。
             </td>
             <td>
                 在 7.15.5 中被加入。 从 PHP 5.4.0 起可使用。
@@ -634,11 +661,12 @@ bool curl_setopt ( resource $ch , int $option , mixed $value )
         <tr>
             <td><strong><code>CURLOPT_SSH_AUTH_TYPES</code></strong></td>
             <td>
-                由一个或多个
-                <strong><code>CURLSSH_AUTH_PUBLICKEY</code></strong>, 
-                <strong><code>CURLSSH_AUTH_PASSWORD</code></strong>, 
-                <strong><code>CURLSSH_AUTH_HOST</code></strong>, 
-                <strong><code>CURLSSH_AUTH_KEYBOARD</code></strong>。 设置<strong><code>CURLSSH_AUTH_ANY</code></strong> 让 libcurl 选着一个。（非标准翻译）
+                由一个或多个<br>
+                <strong><code>CURLSSH_AUTH_PUBLICKEY</code></strong><br> 
+                <strong><code>CURLSSH_AUTH_PASSWORD</code></strong><br>
+                <strong><code>CURLSSH_AUTH_HOST</code></strong><br>
+                <strong><code>CURLSSH_AUTH_KEYBOARD</code></strong><br>
+                设置<strong><code>CURLSSH_AUTH_ANY</code></strong> 让 libcurl 自己决定
             </td>
             <td>
                 在 7.16.1 中被加入。
@@ -649,10 +677,10 @@ bool curl_setopt ( resource $ch , int $option , mixed $value )
             <td><strong><code>CURLOPT_IPRESOLVE</code></strong></td>
             <td>
             允许应用程序选择在解析主机名时使用何种类型的IP地址。这是唯一有趣的，当使用多个版本的IP地址解析主机名称。可能的值是
-            <strong><code>CURL_IPRESOLVE_WHATEVER</code></strong>, 
-            <strong><code>CURL_IPRESOLVE_V4</code></strong>, 
-            <strong><code>CURL_IPRESOLVE_V6</code></strong>, 默认
-            <strong><code>CURL_IPRESOLVE_WHATEVER</code></strong>.
+            <strong><code>CURL_IPRESOLVE_WHATEVER</code></strong><br>
+            <strong><code>CURL_IPRESOLVE_V4</code></strong><br>
+            <strong><code>CURL_IPRESOLVE_V6</code></strong><br> 
+            默认<strong><code>CURL_IPRESOLVE_WHATEVER</code></strong>
             </td>
             <td>
                 在 7.10.8 中被加入。
@@ -664,346 +692,274 @@ bool curl_setopt ( resource $ch , int $option , mixed $value )
 **对于下面的这些`option`，`value`应该被设置成 `string`：**  
 
 <table>
-        
-         <thead>
-          <tr>
-           <th>选项</th>
-           <th>设置的<code>value</code></th>
-           <th>备注</th>
-          </tr>
+    <thead>
+        <tr>
+            <th>选项</th>
+            <th>设置的<code>value</code></th>
+            <th>备注</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><strong><code>CURLOPT_CAINFO</code></strong></td>
+            <td>
+                一个保存着1个或多个用来让服务端验证的证书的文件名。这个参数仅仅在和<strong><code>CURLOPT_SSL_VERIFYPEER</code></strong>一起使用时才有意义。            .
+            </td>
+            <td>可能需要绝对路径。</td>
+        </tr>
 
-         </thead>
-
-         <tbody>
-          <tr>
-           <td><strong><code>CURLOPT_CAINFO</code></strong></td>
-           <td>
-            一个保存着1个或多个用来让服务端验证的证书的文件名。这个参数仅仅在和<strong><code>CURLOPT_SSL_VERIFYPEER</code></strong>一起使用时才有意义。            .
-           </td>
-           <td>
-            可能需要绝对路径。
-           </td>
-          </tr>
-
-          <tr>
-           <td><strong><code>CURLOPT_CAPATH</code></strong></td>
-           <td>
+        <tr>
+            <td><strong><code>CURLOPT_CAPATH</code></strong></td>
+            <td>
             一个保存着多个CA证书的目录。这个选项是和<strong><code>CURLOPT_SSL_VERIFYPEER</code></strong>一起使用的。
-           </td>
-           <td>
-           </td>
-          </tr>
+            </td>
+            <td></td>
+        </tr>
 
-          <tr>
-           <td><strong><code>CURLOPT_COOKIE</code></strong></td>
-           <td>
+        <tr>
+            <td><strong><code>CURLOPT_COOKIE</code></strong></td>
+            <td>
             设定 HTTP 请求中<em>"Cookie: "</em>部分的内容。多个 cookie 用分号分隔，分号后带一个空格(例如， "<em>fruit=apple; colour=red</em>")。
-           </td>
-           <td>
-           </td>
-          </tr>
+            </td>
+            <td></td>
+        </tr>
 
-          <tr>
-           <td><strong><code>CURLOPT_COOKIEFILE</code></strong></td>
-           <td>
+        <tr>
+            <td><strong><code>CURLOPT_COOKIEFILE</code></strong></td>
+            <td>
             包含 cookie 数据的文件名，cookie 文件的格式可以是 Netscape 格式，或者只是纯 HTTP 头部风格，存入文件。如果文件名是空的，不会加载 cookie，但 cookie 的处理仍旧启用。
-           </td>
-           <td>
-           </td>
-          </tr>
+            </td>
+            <td></td>
+        </tr>
 
-          <tr>
-           <td><strong><code>CURLOPT_COOKIEJAR</code></strong></td>
-           <td>
+        <tr>
+            <td><strong><code>CURLOPT_COOKIEJAR</code></strong></td>
+            <td>
             连接结束后，比如，调用 curl_close 后，保存 cookie 信息的文件。
-           </td>
-           <td>
-           </td>
-          </tr>
+            </td>
+            <td></td>
+        </tr>
 
-          <tr>
-           <td><strong><code>CURLOPT_CUSTOMREQUEST</code></strong></td>
-           <td><p>
-            HTTP 请求时，使用自定义的 Method 来代替<em>"GET"</em>或<em>"HEAD"</em>。对 <em>"DELETE"</em> 或者其他更隐蔽的 HTTP 请求有用。
-            有效值如 <em>"GET"</em>，<em>"POST"</em>，<em>"CONNECT"</em>等等；也就是说，不要在这里输入整行 HTTP 请求。例如输入<em>"GET /index.html HTTP/1.0\r\n\r\n"</em>是不正确的。
-            </p><blockquote><p><strong>Note</strong>: 
-             </p><p>
-              不确定服务器支持这个自定义方法则不要使用它。
-             </p>
-            </blockquote>
-            
-           </td>
-           
-           
-           
-           <td>
-           </td>
-          </tr>
+        <tr>
+            <td><strong><code>CURLOPT_CUSTOMREQUEST</code></strong></td>
+            <td>
+                <p>
+                HTTP 请求时，使用自定义的 Method 来代替<em>"GET"</em>或<em>"HEAD"</em>。对 <em>"DELETE"</em> 或者其他更隐蔽的 HTTP 请求有用。
+                有效值如 <em>"GET"</em>，<em>"POST"</em>，<em>"CONNECT"</em>等等；也就是说，不要在这里输入整行 HTTP 请求。例如输入<em>"GET /index.html HTTP/1.0\r\n\r\n"</em>是不正确的。
+                </p>
+                <blockquote>
+                <p><strong>Note</strong>: </p>
+                <p>不确定服务器支持这个自定义方法则不要使用它。</p>
+                </blockquote>
+            </td>
+            <td></td>
+        </tr>
 
-          <tr>
-           <td><strong><code>CURLOPT_EGDSOCKET</code></strong></td>
-           <td>
+        <tr>
+            <td><strong><code>CURLOPT_EGDSOCKET</code></strong></td>
+            <td>
             类似<strong><code>CURLOPT_RANDOM_FILE</code></strong>，除了一个Entropy Gathering Daemon套接字。
-           </td>
-           <td>
-           </td>
-          </tr>
+            </td>
+            <td></td>
+        </tr>
 
-          
-          
-          
-          
-          
-          <tr>
-           <td><strong><code>CURLOPT_ENCODING</code></strong></td>
-           <td>
+        <tr>
+            <td><strong><code>CURLOPT_ENCODING</code></strong></td>
+            <td>
             HTTP请求头中<em>"Accept-Encoding: "</em>的值。
             这使得能够解码响应的内容。
             支持的编码有<em>"identity"</em>，<em>"deflate"</em>和<em>"gzip"</em>。如果为空字符串<em>""</em>，会发送所有支持的编码类型。
-           </td>
-           <td>
-            在 cURL 7.10 中被加入。
-           </td>
-          </tr>
+            </td>
+            <td>在 cURL 7.10 中被加入。</td>
+        </tr>
 
-          <tr>
-           <td><strong><code>CURLOPT_FTPPORT</code></strong></td>
-           <td>
+        <tr>
+            <td><strong><code>CURLOPT_FTPPORT</code></strong></td>
+            <td>
             这个值将被用来获取供FTP"PORT"指令所需要的IP地址。
             "PORT" 指令告诉远程服务器连接到我们指定的IP地址。这个字符串可以是纯文本的IP地址、主机名、一个网络接口名（UNIX下）或者只是一个'-'来使用默认的 IP 地址。
-           </td>
-           <td>
-           </td>
-          </tr>
+            </td>
+            <td></td>
+        </tr>
 
-          
-          
-          <tr>
-           <td><strong><code>CURLOPT_INTERFACE</code></strong></td>
-           <td>
+        <tr>
+            <td><strong><code>CURLOPT_INTERFACE</code></strong></td>
+            <td>
             发送的网络接口（interface），可以是一个接口名、IP 地址或者是一个主机名。
-           </td>
-           <td>
-           </td>
-          </tr>
-
+            </td>
+            <td></td>
+        </tr>
           
-          
-          
-          
-          
-          <tr>
-           <td><strong><code>CURLOPT_KEYPASSWD</code></strong></td>
-           <td>
+        <tr>
+            <td><strong><code>CURLOPT_KEYPASSWD</code></strong></td>
+            <td>
             使用 <strong><code>CURLOPT_SSLKEY</code></strong> 
             或 <strong><code>CURLOPT_SSH_PRIVATE_KEYFILE</code></strong> 私钥时候的密码。
-           </td>
-           <td>
-            在 cURL 7.16.1 中添加。
-           </td>
-          </tr>
+            </td>
+            <td>在 cURL 7.16.1 中添加。</td>
+        </tr>
 
-          <tr>
-           <td><strong><code>CURLOPT_KRB4LEVEL</code></strong></td>
-           <td>
+        <tr>
+            <td><strong><code>CURLOPT_KRB4LEVEL</code></strong></td>
+            <td>
             KRB4 (Kerberos 4) 安全级别。下面的任何值都是有效的(从低到高的顺序)：<em>"clear"</em>、<em>"safe"</em>、<em>"confidential"</em>、<em>"private".</em>。如果字符串以上这些，将使用<em>"private"</em>。
             这个选项设置为 <strong><code>NULL</code></strong> 时将禁用 KRB4 安全认证。目前 KRB4 安全认证只能用于 FTP 传输。
-           </td>
-           <td>
-           </td>
-          </tr>
+            </td>
+            <td></td>
+        </tr>
 
-          <tr>
-           <td><strong><code>CURLOPT_POSTFIELDS</code></strong></td>
-           <td>
-            <span class="simpara">
+        <tr>
+            <td><strong><code>CURLOPT_POSTFIELDS</code></strong></td>
+            <td>
+            <span>
             全部数据使用HTTP协议中的 "POST" 操作来发送。
             要发送文件，在文件名前面加上<em>@</em>前缀并使用完整路径。
             文件类型可在文件名后以 '<em>;type=mimetype</em>' 的格式指定。
-            
             这个参数可以是 urlencoded 后的字符串，类似'<em>para1=val1&amp;para2=val2&amp;...</em>'，也可以使用一个以字段名为键值，字段数据为值的数组。
             如果<code>value</code>是一个数组，<em>Content-Type</em>头将会被设置成<em>multipart/form-data</em>。
             </span>
-            <span class="simpara">
+            <span>
              从 PHP 5.2.0 开始，使用 <em>@</em>  前缀传递文件时，<code>value</code> 必须是个数组。
             </span>
-            <span class="simpara">
-             从 PHP 5.5.0 开始,  <em>@</em> 前缀已被废弃，文件可通过 <a href="class.curlfile.php" class="classname">CURLFile</a> 发送。
+            <span>
+             从 PHP 5.5.0 开始,  <em>@</em> 前缀已被废弃，文件可通过 CURLFile发送。
              设置 <strong><code>CURLOPT_SAFE_UPLOAD</code></strong> 为 <strong><code>TRUE</code></strong> 可禁用  <em>@</em>  前缀发送文件，以增加安全性。
             </span>
-           </td>
-           
-           
-           <td>
-           </td>
-          </tr>
+            </td>
+            <td></td>
+        </tr>
 
-          
-          <tr>
-           <td><strong><code>CURLOPT_PRIVATE</code></strong></td>
-           <td>
-            Any data that should be associated with this cURL handle.
-             This data
-            can subsequently be retrieved with the
-            <strong><code>CURLINFO_PRIVATE</code></strong> option of
-            <span class="function"><a href="function.curl-getinfo.php" class="function">curl_getinfo()</a></span>. cURL does nothing with this data.
-            When using a cURL multi handle, this private data is typically a
-            unique key to identify a standard cURL handle.
-           </td>
-           <td>
-            Added in cURL 7.10.3. 
-           </td>
-          </tr>
+        <tr>
+            <td><strong><code>CURLOPT_PRIVATE</code></strong></td>
+            <td>
+            cURL资源句柄相关的一些数据。<br>
+            <small>该数据可以用 <a href="curl_getinfo.md">curl_getinfo()</a> 的<code>CURLINFO_PRIVATE</code>选项检索。
+            cURL用这些数据不做任何事情。
+            当使用一个多句柄的cURL时，这个私有数据通常是一个唯一的键，用来识别一个标准的cURL资源句柄。</small>
+            </td>
+            <td>在 cURL 7.10.3 中添加</td>
+        </tr>
 
-          <tr>
-           <td><strong><code>CURLOPT_PROXY</code></strong></td>
-           <td>
-            HTTP 代理通道。
-           </td>
-           <td>
-           </td>
-          </tr>
+        <tr>
+            <td><strong><code>CURLOPT_PROXY</code></strong></td>
+            <td>HTTP 代理通道。</td>
+            <td></td>
+        </tr>
 
-          <tr>
-           <td><strong><code>CURLOPT_PROXYUSERPWD</code></strong></td>
-           <td>
+        <tr>
+            <td><strong><code>CURLOPT_PROXYUSERPWD</code></strong></td>
+            <td>
             一个用来连接到代理的<em>"[username]:[password]"</em>格式的字符串。
-           </td>
-           <td>
-           </td>
-          </tr>
+            </td>
+            <td></td>
+        </tr>
 
-          <tr>
-           <td><strong><code>CURLOPT_RANDOM_FILE</code></strong></td>
-           <td>
-            一个被用来生成 SSL 随机数种子的文件名。
-           </td>
-           <td>
-           </td>
-          </tr>
+        <tr>
+            <td><strong><code>CURLOPT_RANDOM_FILE</code></strong></td>
+            <td>一个被用来生成 SSL 随机数种子的文件名。</td>
+            <td></td>
+        </tr>
 
-          <tr>
-           <td><strong><code>CURLOPT_RANGE</code></strong></td>
-           <td>
+        <tr>
+            <td><strong><code>CURLOPT_RANGE</code></strong></td>
+            <td>
             以<em>"X-Y"</em>的形式，其中X和Y都是可选项获取数据的范围，以字节计。HTTP传输线程也支持几个这样的重复项中间用逗号分隔如<em>"X-Y,N-M"</em>。
-           </td>
-           <td>
-           </td>
-          </tr>
+            </td>
+            <td></td>
+        </tr>
 
-          <tr>
-           <td><strong><code>CURLOPT_REFERER</code></strong></td>
-           <td>
-            在HTTP请求头中<em>"Referer: "</em>的内容。
-           </td>
-           <td>
-           </td>
-          </tr>
+        <tr>
+            <td><strong><code>CURLOPT_REFERER</code></strong></td>
+            <td>在HTTP请求头中<em>"Referer: "</em>的内容。</td>
+            <td></td>
+        </tr>
 
-          <tr>
-           <td><strong><code>CURLOPT_SSH_HOST_PUBLIC_KEY_MD5</code></strong></td>
-           <td>
+        <tr>
+            <td>
+            <strong><code>CURLOPT_SSH_HOST_PUBLIC_KEY_MD5</code></strong></td>
+            <td>
             包含 32 位长的 16 进制数值。这个字符串应该是远程主机公钥（public key） 的 MD5 校验值。在不匹配的时候 libcurl 会拒绝连接。
             此选项仅用于  SCP 和 SFTP 的传输。
-           </td>
-           <td>
-            cURL 7.17.1 中添加。
-           </td>
-          </tr>
+            </td>
+            <td>cURL 7.17.1 中添加。</td>
+        </tr>
           
-          <tr>
-           <td><strong><code>CURLOPT_SSH_PUBLIC_KEYFILE</code></strong></td>
-           <td>
-            The file name for your public key. If not used, libcurl defaults to 
-            $HOME/.ssh/id_dsa.pub if the HOME environment variable is set, 
-            and just "id_dsa.pub" in the current directory if HOME is not set.
-           </td>
-           <td>
-            Added in cURL 7.16.1. 
-           </td>
-          </tr>
+        <tr>
+            <td><strong><code>CURLOPT_SSH_PUBLIC_KEYFILE</code></strong></td>
+            <td>
+            你的公钥（public key）文件名。<br>
+            不使用的情况下：
+            若设置了 HOME 环境变量，libcurl 默认为 $HOME/.ssh/id_dsa.pub；
+            未设置 HOME 环境变量, 则为当前目录下"./id_dsa.pub"。
+            </td>
+            <td>cURL 7.16.1 中添加</td>
+        </tr>
 
-          <tr>
-           <td><strong><code>CURLOPT_SSH_PRIVATE_KEYFILE</code></strong></td>
-           <td>
-            The file name for your private key. If not used, libcurl defaults to 
-            $HOME/.ssh/id_dsa if the HOME environment variable is set, 
-            and just "id_dsa" in the current directory if HOME is not set. 
-            If the file is password-protected, set the password with 
-            <strong><code>CURLOPT_KEYPASSWD</code></strong>.
-           </td>
-           <td>
-            Added in cURL 7.16.1. 
-           </td>
-          </tr>
+        <tr>
+            <td><strong><code>CURLOPT_SSH_PRIVATE_KEYFILE</code></strong></td>
+            <td>
+            私有密钥（private key）文件名。<br>
+            不使用的情况下：
+            若设置了 HOME 环境变量，libcurl 默认为 $HOME/.ssh/id_dsa。
+            未设置 HMOE 环境变量，默认为当前目录下"./id_dsa"。
+            如果文件有密码保护，用<strong><code>CURLOPT_KEYPASSWD</code></strong>设置密码。
+            </td>
+            <td>cURL 7.16.1 中添加</td>
+        </tr>
 
-          <tr>
-           <td><strong><code>CURLOPT_SSL_CIPHER_LIST</code></strong></td>
-           <td>
+        <tr>
+            <td><strong><code>CURLOPT_SSL_CIPHER_LIST</code></strong></td>
+            <td>
             一个SSL的加密算法列表。例如<em>RC4-SHA</em>和<em>TLSv1</em>都是可用的加密列表。
-           </td>
-           <td>
-           </td>
-          </tr>
+            </td>
+            <td></td>
+        </tr>
 
-          <tr>
-           <td><strong><code>CURLOPT_SSLCERT</code></strong></td>
-           <td>
-            一个包含 PEM 格式证书的文件名。
-           </td>
-           <td>
-           </td>
-          </tr>
+        <tr>
+            <td><strong><code>CURLOPT_SSLCERT</code></strong></td>
+            <td>一个包含 PEM 格式证书的文件名。</td>
+            <td></td>
+        </tr>
 
-          <tr>
-           <td><strong><code>CURLOPT_SSLCERTPASSWD</code></strong></td>
-           <td>
+        <tr>
+            <td><strong><code>CURLOPT_SSLCERTPASSWD</code></strong></td>
+            <td>
             使用<strong><code>CURLOPT_SSLCERT</code></strong>证书需要的密码。
-           </td>
-           <td>
-           </td>
-          </tr>
+            </td>
+            <td></td>
+        </tr>
 
-          <tr>
-           <td><strong><code>CURLOPT_SSLCERTTYPE</code></strong></td>
-           <td>
+        <tr>
+            <td><strong><code>CURLOPT_SSLCERTTYPE</code></strong></td>
+            <td>
             证书的类型。支持的格式有<em>"PEM"</em> (默认值), <em>"DER"</em>和<em>"ENG"</em>。
-           </td>
-           <td>
-            在 cURL 7.9.3中 被加入。
-           </td>
-          </tr>
+            </td>
+            <td>在 cURL 7.9.3中 被加入。</td>
+        </tr>
 
-          <tr>
-           <td><strong><code>CURLOPT_SSLENGINE</code></strong></td>
-           <td>
+        <tr>
+            <td><strong><code>CURLOPT_SSLENGINE</code></strong></td>
+            <td>
             用来在<strong><code>CURLOPT_SSLKEY</code></strong>中指定的SSL私钥的加密引擎变量。
-           </td>
-           <td>
-           </td>
-          </tr>
+            </td>
+            <td></td>
+        </tr>
 
-          <tr>
-           <td><strong><code>CURLOPT_SSLENGINE_DEFAULT</code></strong></td>
-           <td>
-            用来做非对称加密操作的变量。
-           </td>
-           <td>
-           </td>
-          </tr>
+        <tr>
+            <td><strong><code>CURLOPT_SSLENGINE_DEFAULT</code></strong></td>
+            <td>用来做非对称加密操作的变量。</td>
+            <td></td>
+        </tr>
 
-          <tr>
-           <td><strong><code>CURLOPT_SSLKEY</code></strong></td>
-           <td>
-            包含 SSL 私钥的文件名。
-           </td>
-           <td>
-           </td>
-          </tr>
+        <tr>
+            <td><strong><code>CURLOPT_SSLKEY</code></strong></td>
+            <td>包含 SSL 私钥的文件名。</td>
+            <td></td>
+        </tr>
 
-          <tr>
-           <td><strong><code>CURLOPT_SSLKEYPASSWD</code></strong></td>
-           <td><p>
+        <tr>
+            <td><strong><code>CURLOPT_SSLKEYPASSWD</code></strong></td>
+            <td><p>
             在 <strong><code>CURLOPT_SSLKEY</code></strong>中指定了的SSL私钥的密码。
             </p><blockquote><p><strong>Note</strong>: 
              </p><p>
@@ -1011,44 +967,39 @@ bool curl_setopt ( resource $ch , int $option , mixed $value )
              </p>
             </blockquote>
             </td>
-           <td>
-           </td>
-          </tr>
+            <td></td>
+        </tr>
 
-          <tr>
-           <td><strong><code>CURLOPT_SSLKEYTYPE</code></strong></td>
-           <td>
+        <tr>
+            <td><strong><code>CURLOPT_SSLKEYTYPE</code></strong></td>
+            <td>
             <strong><code>CURLOPT_SSLKEY</code></strong>中规定的私钥的加密类型，支持的密钥类型为<em>"PEM"</em>(默认值)、<em>"DER"</em>和<em>"ENG"</em>。
-           </td>
-           <td>
-           </td>
-          </tr>
+            </td>
+            <td></td>
+        </tr>
 
-          <tr>
-           <td><strong><code>CURLOPT_URL</code></strong></td>
-           <td>
-            需要获取的 URL 地址，也可以在<span class="function"><a href="function.curl-init.php" class="function">curl_init()</a></span> 初始化会话的时候。
-           </td>
-           <td>
-           </td>
-          </tr>
+        <tr>
+            <td><strong><code>CURLOPT_URL</code></strong></td>
+            <td>
+            需要获取的 URL 地址，也可以在<span><a href="curl-init.md">curl_init()</a></span> 初始化会话的时候。
+            </td>
+            <td></td>
+        </tr>
 
-          <tr>
-           <td><strong><code>CURLOPT_USERAGENT</code></strong></td>
-           <td>
+        <tr>
+            <td><strong><code>CURLOPT_USERAGENT</code></strong></td>
+            <td>
             在HTTP请求中包含一个<em>"User-Agent: "</em>头的字符串。
-           </td>
-           <td>
-           </td>
-          </tr>
+            </td>
+            <td></td>
+        </tr>
 
-          <tr>
-           <td><strong><code>CURLOPT_USERPWD</code></strong></td>
-           <td>
+        <tr>
+            <td><strong><code>CURLOPT_USERPWD</code></strong></td>
+            <td>
             传递一个连接中需要的用户名和密码，格式为：<em>"[username]:[password]"</em>。
-           </td>
-           <td>
-           </td>
+            </td>
+            <td></td>
         </tr>
     </tbody>
 </table>   
@@ -1220,5 +1171,5 @@ bool curl_setopt ( resource $ch , int $option , mixed $value )
 ## 链接
 
 - [curl函数](directory.md)
-- 上一节：[curl_init](curl_init.md)
-- 下一节：[curl_setopt](curl_setopt.md)
+- 上一节：[curl_setopt_array](curl_setopt_array.md)
+- 下一节：[curl_share_close](curl_share_close.md)

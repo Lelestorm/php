@@ -5,17 +5,17 @@ curl_init — 初始化一个cURL会话
 
 #### 说明  
 ```php
-void curl_close ( resource $ch )
+resource curl_init ([ string $url = NULL ] )
 ```
 
-关闭一个cURL会话并且释放所有资源。cURL句柄ch 也会被释放。  
+初始化一个新的会话，返回一个cURL句柄，供curl_setopt(), curl_exec()和curl_close() 函数使用。
 
 #### 参数   
-$ch  
-&nbsp;&nbsp;&nbsp;&nbsp;由 curl_init() 返回的 cURL 句柄。  
+$url  
+&nbsp;&nbsp;&nbsp;&nbsp;如果提供了该参数，CURLOPT_URL 选项将会被设置成这个值。你也可以使用curl_setopt()函数手动地设置这个值。
 
 #### 返回值
-没有返回值   
+如果成功，返回一个cURL句柄，出错返回 FALSE。  
 
 #### 范例   
 ---  
@@ -40,5 +40,5 @@ curl_close($ch);
 ## 链接
 
 - [curl函数](directory.md)
-- 上一节：[#](#)
-- 下一节：[curl_setopt](curl_setopt.md)
+- 上一节：[curl_getinfo](curl_getinfo.md)
+- 下一节：[curl_multi_add_handle](curl_multi_add_handle.md)
