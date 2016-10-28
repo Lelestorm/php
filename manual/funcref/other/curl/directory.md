@@ -35,10 +35,6 @@ PHP 支持 Daniel Stenberg 创建的 libcurl 库，能够连接通讯各种服�
 * [curl_strerror](curl_strerror.md) — 返回给定的错误码的错误描述
 * [curl_unescape](curl_unescape.md) — 解码给定的 URL 编码的字符串
 * [curl_version](curl_version.md) — 获取cURL版本信息
-* [curl_errno](curl_errno.md)
-* [curl_errno](curl_errno.md)
-* [curl_errno](curl_errno.md)
-* [curl_errno](curl_errno.md)
 
 ### CURLFile 类
 * [CURLFile::__construct]() — 创建 CURLFile 对象
